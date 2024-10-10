@@ -47,7 +47,7 @@ export default class Service {
     const storageConfig = askarPostgresConfig();
 
     const agentConfig: InitConfig = {
-      endpoints: [`http://${url}:${port}`, `ws://${url}:${port}`],
+      endpoints: [`https://${url}:${port}`, `wss://${url}:${port}`],
       label: process.env.AGENT_LABEL || "h",
       walletConfig: {
         id: process.env.WALLET_NAME || "h",
@@ -93,7 +93,7 @@ export default class Service {
         const { outOfBandInvitation } = await agent.oob.createInvitation();
         res.send(
           outOfBandInvitation.toUrl({
-            domain: `http://${url}/invitation`,
+            domain: `https://${url}/invitation`,
           })
         );
       }
@@ -110,7 +110,7 @@ export default class Service {
     });
     const mediatorInvitationUrl =
       mediatorOutOfBandRecord?.outOfBandInvitation.toUrl({
-        domain: `http://${url}`,
+        domain: `https://${url}`,
       });
 
     console.log("Mediator invitation URL: ", mediatorInvitationUrl);
